@@ -5,6 +5,10 @@ console.log(checkboxes);
 //////////////////////////////////////////////////////////////////////
 
 function createTask(tarea){
+    tarea = tarea.trim();
+    if(tarea == ""){
+        return;
+    }
 
 tasks = document.querySelector(".tasks");
 
@@ -26,6 +30,15 @@ taskTemp.appendChild(taskIcon2);
 taskIcon2.classList.add("fa-solid","fa-trash-can","trash-can");
 }
 
+document.querySelector(".task-input").addEventListener('keypress', function enterEL(e){
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        createTask(plusBtn.previousElementSibling.textContent);
+        plusBtn.previousElementSibling.textContent = "";
+        document.querySelector(".task-input").removeEventListener("click",enterEL());
+    }
+});
+
 /////////////////////////////////////////////////////////////////////
 plusBtn = document.getElementById("plus-circle");
 plusBtn.addEventListener("click",()=>{
@@ -34,11 +47,17 @@ plusBtn.addEventListener("click",()=>{
 })
 /////////////////////////////////////////////////////////////////////
 
+function trashCansEL(){
 trashCans = document.querySelectorAll(".trash-can");
-console.log(trashCans);
 trashCans.forEach((icon)=>{
-    
+    icon.addEventListener("click",()=>{
+        icon.parentElement.remove();
+    })
 });
+}
+
+trashCansEL();
+/////////////////////////////////////////////////////////////////////
 
 
 checkboxes.forEach((box) => {
@@ -55,3 +74,5 @@ checkboxes.forEach((box) => {
             <i class="fa-solid fa-trash-can trash-can"></i>
         </div>
 */
+
+    document.querySelector(".task-input").textContent.trim();
