@@ -1,8 +1,8 @@
 checkboxes = document.querySelectorAll(".checkbox");
 checkboxes = Array.from(checkboxes);
-console.log(checkboxes);
 
 //////////////////////////////////////////////////////////////////////
+// CREAR TAREA 
 
 function createTask(tarea){
     tarea = tarea.trim();
@@ -28,24 +28,70 @@ taskPara.classList.add("task");
 taskIcon2 = document.createElement("I");
 taskTemp.appendChild(taskIcon2);
 taskIcon2.classList.add("fa-solid","fa-trash-can","trash-can");
+
+taskIcon2.addEventListener("click",()=>{
+        taskIcon2.parentElement.remove();
+    });
+
+ taskIcon1.addEventListener("click",()=>{
+        finishTask(taskIcon1.parentElement.textContent);
+        taskIcon1.parentElement.remove();
+    })
 }
+
+/////////////////////////////////////////////////////////////////////
+// TERMINAR TAREA
+
+function finishTask(tarea){
+    tarea = tarea.trim();
+    if(tarea == ""){
+        return;
+    }
+
+checkeds = document.querySelector(".checkeds");
+
+taskTemp = document.createElement("DIV");
+checkeds.prepend(taskTemp);
+taskTemp.classList.add("checked-container");
+
+taskIcon11 = document.createElement("I");
+taskTemp.appendChild(taskIcon11);
+taskIcon11.classList.add("fa-sharp","fa-solid","fa-circle-check","checkedbox");
+
+taskPara = document.createElement("P");
+taskTemp.appendChild(taskPara);
+taskPara.innerHTML = tarea;
+taskPara.classList.add("checked");
+
+taskIcon22 = document.createElement("I");
+taskTemp.appendChild(taskIcon22);
+taskIcon22.classList.add("fa-solid","fa-trash-can","trash-can");
+
+trashCansEL();
+}
+
+/////////////////////////////////////////////////////////////////////
+// EVENT LISTENER DEL ENTER
 
 document.querySelector(".task-input").addEventListener('keypress', function enterEL(e){
     if (e.key === 'Enter') {
         e.preventDefault();
         createTask(plusBtn.previousElementSibling.textContent);
         plusBtn.previousElementSibling.textContent = "";
-        document.querySelector(".task-input").removeEventListener("click",enterEL());
     }
 });
 
+
 /////////////////////////////////////////////////////////////////////
+// EVENT LISTENER DEL BOTON DE MÁS EN EL INPUT
+
 plusBtn = document.getElementById("plus-circle");
 plusBtn.addEventListener("click",()=>{
     createTask(plusBtn.previousElementSibling.innerHTML);
     plusBtn.previousElementSibling.innerHTML = "";
 })
 /////////////////////////////////////////////////////////////////////
+// BORRAR TAREAS - EVENT LISTENER DEL TRASH CAN
 
 function trashCansEL(){
 trashCans = document.querySelectorAll(".trash-can");
@@ -55,24 +101,18 @@ trashCans.forEach((icon)=>{
     })
 });
 }
-
 trashCansEL();
 /////////////////////////////////////////////////////////////////////
+// EVENT LISTENER CHECKBOX AL FINALIZAR TAREA
 
-
-checkboxes.forEach((box) => {
-    box.addEventListener("click",()=>{
-        console.log(box.parentElement);
-    })
-});
-
-
-/*
-        <div class="task-container">
-            <i class="fa-regular fa-circle checkbox"></i>
-            <p class="task">Example Task</p>
-            <i class="fa-solid fa-trash-can trash-can"></i>
-        </div>
-*/
-
-    document.querySelector(".task-input").textContent.trim();
+function checkboxsEL(){
+    trashCans = document.querySelectorAll(".checkbox");
+    trashCans.forEach((icon)=>{
+        icon.addEventListener("click",()=>{
+            finishTask(icon.parentElement.textContent);
+            icon.parentElement.remove();
+        })
+    });
+    }
+checkboxsEL();
+/////////////////////////////////////////////////////////////////////
