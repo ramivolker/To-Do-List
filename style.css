@@ -87,8 +87,8 @@ h1{
 
 #plus-circle:hover{
     scale: 1.2;
-    color: green;
-    filter: drop-shadow(0 0 1px green);
+    color: #0fa70f;
+    filter: drop-shadow(0 0 1px #0fa70f);
 }
 
 .trash-can{
