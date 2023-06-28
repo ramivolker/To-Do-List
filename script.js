@@ -38,7 +38,7 @@ taskIcon2.addEventListener("click",(e)=>{
         console.log(e.target.parentElement.textContent);
         finishTask(e.target.parentElement.textContent);
         e.target.parentElement.remove();
-    })
+    });
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -66,7 +66,16 @@ taskIcon22 = document.createElement("I");
 taskTemp.appendChild(taskIcon22);
 taskIcon22.classList.add("fa-solid","fa-trash-can","trash-can");
 
-trashCansEL();
+
+        taskIcon11.addEventListener("click",(e)=>{
+            console.log(e.target.parentElement.textContent);
+            unfinishTask(e.target.parentElement.textContent);
+            e.target.parentElement.remove();
+        });
+
+        taskIcon22.addEventListener("click",(e)=>{
+            e.target.parentElement.remove();
+        });
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -100,7 +109,7 @@ trashCans.forEach((icon)=>{
     })
 });
 }
-trashCansEL();
+//trashCansEL();
 /////////////////////////////////////////////////////////////////////
 // EVENT LISTENER CHECKBOX AL FINALIZAR TAREA
 
@@ -114,7 +123,7 @@ function checkboxsEL(){
         })
     });
     }
-checkboxsEL();
+//checkboxsEL();
 /////////////////////////////////////////////////////////////////////
 
 function checkedsEL(){
@@ -127,7 +136,7 @@ function checkedsEL(){
         })
     });
     }
-checkedsEL();
+//checkedsEL();
 
 /////////////////////////////////////////////////////////////////////
 // DEVOLVER TAREA
@@ -154,8 +163,22 @@ taskIcon22 = document.createElement("I");
 taskTemp.appendChild(taskIcon22);
 taskIcon22.classList.add("fa-solid","fa-trash-can","trash-can");
 
-trashCansEL();
+taskIcon11.addEventListener("click",(e)=>{
+    console.log(e.target);
+    console.log(e.target.parentElement.textContent);
+    finishTask(e.target.parentElement.textContent);
+    e.target.parentElement.remove();
+});
+
+taskIcon22.addEventListener("click",(e)=>{
+    e.target.parentElement.remove();
+});
 }
 
-
 /////////////////////////////////////////////////////////////////////
+
+var fecha = new Date();
+console.log(fecha);
+
+dia = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+console.log(dia[fecha.getDay()]);
