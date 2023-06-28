@@ -16,28 +16,58 @@ taskTemp = document.createElement("DIV");
 tasks.prepend(taskTemp);
 taskTemp.classList.add("task-container");
 
+primaryInfo = document.createElement("DIV");
+primaryInfo.classList.add("primaryInfo")
+taskTemp.prepend(primaryInfo);
+
 taskIcon1 = document.createElement("I");
-taskTemp.appendChild(taskIcon1);
+primaryInfo.appendChild(taskIcon1);
 taskIcon1.classList.add("fa-regular","fa-circle","checkbox");
 
 taskPara = document.createElement("P");
-taskTemp.appendChild(taskPara);
+primaryInfo.appendChild(taskPara);
 taskPara.innerHTML = tarea;
 taskPara.classList.add("task");
 
 taskIcon2 = document.createElement("I");
-taskTemp.appendChild(taskIcon2);
+primaryInfo.appendChild(taskIcon2);
 taskIcon2.classList.add("fa-solid","fa-trash-can","trash-can");
 
+
+secondaryInfo = document.createElement("DIV");
+secondaryInfo.classList.add("secondaryInfo");
+taskTemp.appendChild(secondaryInfo);
+
+let fecha = new Date();
+
+siSpan1 = document.createElement("SPAN");
+secondaryInfo.appendChild(siSpan1);
+siSpan1.classList.add("day");
+let dia = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+siSpan1.textContent = dia[fecha.getDay()];
+
+siSpan2 = document.createElement("SPAN");
+secondaryInfo.appendChild(siSpan2);
+siSpan2.classList.add("fechaEntera");
+siSpan2.textContent = fecha.toLocaleDateString();
+
+siSpan3 = document.createElement("SPAN");
+secondaryInfo.appendChild(siSpan3);
+siSpan3.classList.add("hora");
+texto = fecha.getHours() + ":" + fecha.getMinutes();
+siSpan3.textContent = texto;
+
+
+
 taskIcon2.addEventListener("click",(e)=>{
-        e.target.parentElement.remove();
+        e.target.parentElement.parentElement.remove();
     });
 
  taskIcon1.addEventListener("click",(e)=>{
         console.log(e.target);
         console.log(e.target.parentElement.textContent);
         finishTask(e.target.parentElement.textContent);
-        e.target.parentElement.remove();
+        e.target.parentElement.parentElement.remove();
     });
 }
 
@@ -70,11 +100,11 @@ taskIcon22.classList.add("fa-solid","fa-trash-can","trash-can");
         taskIcon11.addEventListener("click",(e)=>{
             console.log(e.target.parentElement.textContent);
             unfinishTask(e.target.parentElement.textContent);
-            e.target.parentElement.remove();
+            e.target.parentElement.parentElement.remove();
         });
 
         taskIcon22.addEventListener("click",(e)=>{
-            e.target.parentElement.remove();
+            e.target.parentElement.parentElement.remove();
         });
 }
 
@@ -105,7 +135,7 @@ function trashCansEL(){
 trashCans = document.querySelectorAll(".trash-can");
 trashCans.forEach((icon)=>{
     icon.addEventListener("click",()=>{
-        icon.parentElement.remove();
+        icon.parentElement.parentElement.remove();
     })
 });
 }
@@ -119,7 +149,7 @@ function checkboxsEL(){
         icon.addEventListener("click",()=>{
             console.log(icon.parentElement.textContent);
             finishTask(icon.parentElement.textContent);
-            icon.parentElement.remove();
+            icon.parentElement.parentElement.remove();
         })
     });
     }
@@ -132,7 +162,7 @@ function checkedsEL(){
         icon.addEventListener("click",()=>{
             console.log(icon.parentElement.textContent);
             unfinishTask(icon.parentElement.textContent);
-            icon.parentElement.remove();
+            icon.parentElement.parent.remove();
         })
     });
     }
@@ -167,11 +197,11 @@ taskIcon11.addEventListener("click",(e)=>{
     console.log(e.target);
     console.log(e.target.parentElement.textContent);
     finishTask(e.target.parentElement.textContent);
-    e.target.parentElement.remove();
+    e.target.parentElement.parentElement.remove();
 });
 
 taskIcon22.addEventListener("click",(e)=>{
-    e.target.parentElement.remove();
+    e.target.parentElement.parentElement.remove();
 });
 }
 
