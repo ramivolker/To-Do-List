@@ -54,8 +54,12 @@ siSpan2.textContent = fecha.toLocaleDateString();
 siSpan3 = document.createElement("SPAN");
 secondaryInfo.appendChild(siSpan3);
 siSpan3.classList.add("hora");
-texto = fecha.getHours() + ":" + fecha.getMinutes();
-siSpan3.textContent = texto;
+texto1 = fecha.toLocaleTimeString();
+texto1 = texto1.toString();
+texto1 = texto1.slice(0,5);
+siSpan3.textContent = texto1;
+
+
 
 
 
