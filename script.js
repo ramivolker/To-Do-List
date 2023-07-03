@@ -57,6 +57,9 @@ siSpan3.classList.add("hora");
 texto1 = fecha.toLocaleTimeString();
 texto1 = texto1.toString();
 texto1 = texto1.slice(0,5);
+if(fecha.getHours() == 1){
+    texto1 = texto1.slice(0,4);
+}
 siSpan3.textContent = texto1;
 
 
