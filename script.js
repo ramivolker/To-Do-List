@@ -43,7 +43,7 @@ let fecha = new Date();
 siSpan1 = document.createElement("SPAN");
 secondaryInfo.appendChild(siSpan1);
 siSpan1.classList.add("day");
-let dia = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+let dia = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 siSpan1.textContent = dia[fecha.getDay()];
 
 siSpan2 = document.createElement("SPAN");
@@ -71,9 +71,7 @@ taskIcon2.addEventListener("click",(e)=>{
     });
 
  taskIcon1.addEventListener("click",(e)=>{
-        console.log(e.target);
-        console.log(e.target.parentElement.textContent);
-        finishTask(e.target.parentElement.textContent);
+        finishTask(e.target.parentElement);
         e.target.parentElement.parentElement.remove();
     });
 }
@@ -82,7 +80,8 @@ taskIcon2.addEventListener("click",(e)=>{
 // TERMINAR TAREA
 
 function finishTask(tarea){
-    tarea = tarea.trim();
+    tareaText = tarea.textContent;
+    tareaText = tareaText.trim();
 
 checkeds = document.querySelector(".checkeds");
 
@@ -90,23 +89,48 @@ taskTemp = document.createElement("DIV");
 checkeds.prepend(taskTemp);
 taskTemp.classList.add("checked-container");
 
+primaryInfo1 = document.createElement("DIV");
+primaryInfo1.classList.add("primaryInfo")
+taskTemp.prepend(primaryInfo1);
+
 taskIcon11 = document.createElement("I");
-taskTemp.appendChild(taskIcon11);
+primaryInfo1.appendChild(taskIcon11);
 taskIcon11.classList.add("fa-sharp","fa-solid","fa-circle-check","checkedbox");
 
 taskPara = document.createElement("P");
-taskTemp.appendChild(taskPara);
-taskPara.innerHTML = tarea;
+primaryInfo1.appendChild(taskPara);
+taskPara.innerHTML = tareaText;
 taskPara.classList.add("checked");
 
 taskIcon22 = document.createElement("I");
-taskTemp.appendChild(taskIcon22);
+primaryInfo1.appendChild(taskIcon22);
 taskIcon22.classList.add("fa-solid","fa-trash-can","trash-can");
+
+secondaryInfo1 = document.createElement("DIV");
+secondaryInfo1.classList.add("secondaryInfo");
+taskTemp.appendChild(secondaryInfo1);
+/////
+
+
+
+siSpan1 = document.createElement("SPAN");
+secondaryInfo1.appendChild(siSpan1);
+siSpan1.classList.add("day");
+siSpan1.textContent = tarea.nextElementSibling.children[0].textContent;
+
+siSpan2 = document.createElement("SPAN");
+secondaryInfo1.appendChild(siSpan2);
+siSpan2.classList.add("fechaEntera");
+siSpan2.textContent = tarea.nextElementSibling.children[1].textContent;
+
+siSpan3 = document.createElement("SPAN");
+secondaryInfo1.appendChild(siSpan3);
+siSpan3.classList.add("hora");
+siSpan3.textContent = tarea.nextElementSibling.children[2].textContent;
 
 
         taskIcon11.addEventListener("click",(e)=>{
-            console.log(e.target.parentElement.textContent);
-            unfinishTask(e.target.parentElement.textContent);
+            unfinishTask(e.target.parentElement);
             e.target.parentElement.parentElement.remove();
         });
 
@@ -179,7 +203,8 @@ function checkedsEL(){
 // DEVOLVER TAREA
 
 function unfinishTask(tarea){
-    tarea = tarea.trim();
+    tareaText = tarea.textContent
+    tareaText = tareaText.trim();
 
 checkeds = document.querySelector(".tasks");
 
@@ -187,23 +212,48 @@ taskTemp = document.createElement("DIV");
 checkeds.prepend(taskTemp);
 taskTemp.classList.add("checked-container");
 
+primaryInfo11 = document.createElement("DIV");
+primaryInfo11.classList.add("primaryInfo")
+taskTemp.prepend(primaryInfo11);
+
 taskIcon11 = document.createElement("I");
-taskTemp.appendChild(taskIcon11);
+primaryInfo11.appendChild(taskIcon11);
 taskIcon11.classList.add("fa-regular","fa-circle","checkbox");
 
 taskPara = document.createElement("P");
-taskTemp.appendChild(taskPara);
-taskPara.innerHTML = tarea;
+primaryInfo11.appendChild(taskPara);
+taskPara.innerHTML = tareaText;
 taskPara.classList.add("checked");
 
 taskIcon22 = document.createElement("I");
-taskTemp.appendChild(taskIcon22);
+primaryInfo11.appendChild(taskIcon22);
 taskIcon22.classList.add("fa-solid","fa-trash-can","trash-can");
+/////
+secondaryInfo11 = document.createElement("DIV");
+secondaryInfo11.classList.add("secondaryInfo");
+taskTemp.appendChild(secondaryInfo11);
+
+siSpan1 = document.createElement("SPAN");
+secondaryInfo11.appendChild(siSpan1);
+siSpan1.classList.add("day");
+siSpan1.textContent = tarea.nextElementSibling.children[0].textContent;
+
+siSpan2 = document.createElement("SPAN");
+secondaryInfo11.appendChild(siSpan2);
+siSpan2.classList.add("fechaEntera");
+siSpan2.textContent = tarea.nextElementSibling.children[1].textContent;
+
+siSpan3 = document.createElement("SPAN");
+secondaryInfo11.appendChild(siSpan3);
+siSpan3.classList.add("hora");
+siSpan3.textContent = tarea.nextElementSibling.children[2].textContent;
+
+
+
+
 
 taskIcon11.addEventListener("click",(e)=>{
-    console.log(e.target);
-    console.log(e.target.parentElement.textContent);
-    finishTask(e.target.parentElement.textContent);
+    finishTask(e.target.parentElement);
     e.target.parentElement.parentElement.remove();
 });
 
