@@ -40,19 +40,27 @@ taskTemp.appendChild(secondaryInfo);
 
 let fecha = new Date();
 
+siCreated = document.createElement("DIV");
+secondaryInfo.appendChild(siCreated);
+siCreated.classList.add("si-created");
+
+siFinished = document.createElement("DIV");
+secondaryInfo.appendChild(siFinished);
+siFinished.classList.add("si-finished");
+
 siSpan1 = document.createElement("SPAN");
-secondaryInfo.appendChild(siSpan1);
+siCreated.appendChild(siSpan1);
 siSpan1.classList.add("day");
 let dia = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 siSpan1.textContent = dia[fecha.getDay()];
 
 siSpan2 = document.createElement("SPAN");
-secondaryInfo.appendChild(siSpan2);
+siCreated.appendChild(siSpan2);
 siSpan2.classList.add("fechaEntera");
 siSpan2.textContent = fecha.toLocaleDateString();
 
 siSpan3 = document.createElement("SPAN");
-secondaryInfo.appendChild(siSpan3);
+siCreated.appendChild(siSpan3);
 siSpan3.classList.add("hora");
 texto1 = fecha.toLocaleTimeString();
 texto1 = texto1.toString();
@@ -111,22 +119,57 @@ secondaryInfo1.classList.add("secondaryInfo");
 taskTemp.appendChild(secondaryInfo1);
 /////
 
+siCreated = document.createElement("DIV");
+secondaryInfo1.appendChild(siCreated);
+siCreated.classList.add("si-created");
 
+siFinished = document.createElement("DIV");
+secondaryInfo1.appendChild(siFinished);
+siFinished.classList.add("si-finished");
 
 siSpan1 = document.createElement("SPAN");
-secondaryInfo1.appendChild(siSpan1);
+siCreated.appendChild(siSpan1);
 siSpan1.classList.add("day");
-siSpan1.textContent = tarea.nextElementSibling.children[0].textContent;
+siSpan1.textContent = tarea.nextElementSibling.children[0].children[0].textContent;
 
 siSpan2 = document.createElement("SPAN");
-secondaryInfo1.appendChild(siSpan2);
+siCreated.appendChild(siSpan2);
 siSpan2.classList.add("fechaEntera");
-siSpan2.textContent = tarea.nextElementSibling.children[1].textContent;
+siSpan2.textContent = tarea.nextElementSibling.children[0].children[1].textContent;
 
 siSpan3 = document.createElement("SPAN");
-secondaryInfo1.appendChild(siSpan3);
+siCreated.appendChild(siSpan3);
 siSpan3.classList.add("hora");
-siSpan3.textContent = tarea.nextElementSibling.children[2].textContent;
+siSpan3.textContent = tarea.nextElementSibling.children[0].children[2].textContent;
+/////
+
+fiSpanFinished = document.createElement("SPAN");
+siFinished.appendChild(fiSpanFinished);
+fiSpanFinished.textContent = "Finished:";
+fiSpanFinished.classList.add("finished");
+
+finFecha = new Date();
+
+fiSpan1 = document.createElement("SPAN");
+siFinished.appendChild(fiSpan1);
+let dia = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+fiSpan1.textContent = dia[finFecha.getDay()];
+
+fiSpan2 = document.createElement("SPAN");
+siFinished.appendChild(fiSpan2);
+fiSpan2.textContent = finFecha.toLocaleDateString();
+
+fiSpan3 = document.createElement("SPAN");
+siFinished.appendChild(fiSpan3);
+texto1 = finFecha.toLocaleTimeString();
+texto1 = texto1.toString();
+texto1 = texto1.slice(0,5);
+if(fecha.getHours() == 1){
+    texto1 = texto1.slice(0,4);
+}
+fiSpan3.textContent = texto1;
+
+
 
 
         taskIcon11.addEventListener("click",(e)=>{

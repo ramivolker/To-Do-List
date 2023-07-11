@@ -133,3 +133,20 @@ h2{
     color: #454545;
     font-weight: 500;
 }
+
+.finished{
+    color:green;
+    font-weight: 700;
+}
+
+.si-created{
+    display: flex;
+    gap: 7px;
+}
+
+.si-finished{
+    display: flex;
+    gap: 7px;
+    left: 180px;
+    position:absolute;
+}
