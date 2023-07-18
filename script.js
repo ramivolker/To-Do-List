@@ -65,7 +65,7 @@ siSpan3.classList.add("hora");
 texto1 = fecha.toLocaleTimeString();
 texto1 = texto1.toString();
 texto1 = texto1.slice(0,5);
-if(fecha.getHours() == 1){
+if(fecha.getHours().toString().length == 1){
     texto1 = texto1.slice(0,4);
 }
 siSpan3.textContent = texto1;
@@ -164,7 +164,7 @@ siFinished.appendChild(fiSpan3);
 texto1 = finFecha.toLocaleTimeString();
 texto1 = texto1.toString();
 texto1 = texto1.slice(0,5);
-if(fecha.getHours() == 1){
+if(fecha.getHours().toString().length == 1){
     texto1 = texto1.slice(0,4);
 }
 fiSpan3.textContent = texto1;
@@ -184,7 +184,7 @@ fiSpan3.textContent = texto1;
 
 /////////////////////////////////////////////////////////////////////
 // EVENT LISTENER DEL ENTER
-
+console.log(document.querySelector(".task-input"));
 document.querySelector(".task-input").addEventListener('keypress', function enterEL(e){
     if (e.key === 'Enter') {
         e.preventDefault();
@@ -276,20 +276,30 @@ secondaryInfo11 = document.createElement("DIV");
 secondaryInfo11.classList.add("secondaryInfo");
 taskTemp.appendChild(secondaryInfo11);
 
+////
+
+siCreated = document.createElement("DIV");
+secondaryInfo11.appendChild(siCreated);
+siCreated.classList.add("si-created");
+
+siFinished = document.createElement("DIV");
+secondaryInfo11.appendChild(siFinished);
+siFinished.classList.add("si-finished");
+
 siSpan1 = document.createElement("SPAN");
-secondaryInfo11.appendChild(siSpan1);
+siCreated.appendChild(siSpan1);
 siSpan1.classList.add("day");
-siSpan1.textContent = tarea.nextElementSibling.children[0].textContent;
+siSpan1.textContent = tarea.nextElementSibling.children[0].children[0].textContent;
 
 siSpan2 = document.createElement("SPAN");
-secondaryInfo11.appendChild(siSpan2);
+siCreated.appendChild(siSpan2);
 siSpan2.classList.add("fechaEntera");
-siSpan2.textContent = tarea.nextElementSibling.children[1].textContent;
+siSpan2.textContent = tarea.nextElementSibling.children[0].children[1].textContent;
 
 siSpan3 = document.createElement("SPAN");
-secondaryInfo11.appendChild(siSpan3);
+siCreated.appendChild(siSpan3);
 siSpan3.classList.add("hora");
-siSpan3.textContent = tarea.nextElementSibling.children[2].textContent;
+siSpan3.textContent = tarea.nextElementSibling.children[0].children[2].textContent;
 
 
 
@@ -308,7 +318,17 @@ taskIcon22.addEventListener("click",(e)=>{
 /////////////////////////////////////////////////////////////////////
 
 var fecha = new Date();
-console.log(fecha);
 
 dia = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-console.log(dia[fecha.getDay()]);
+
+document.querySelector(".task-input").textContent = "Write your pending tasks here";
+document.querySelector(".task-input").style.color = "#666";
+document.querySelector(".task-input").addEventListener("focus",()=>{
+    document.querySelector(".task-input").textContent = "";
+    document.querySelector(".task-input").style.color = "#111";
+});
+
+document.querySelector(".task-input").addEventListener("blur",()=>{
+    document.querySelector(".task-input").textContent = "Write your pending tasks here";
+    document.querySelector(".task-input").style.color = "#666";
+});

@@ -41,7 +41,10 @@ h1{
     min-width: 300px;
     width: calc(50vw - 24px - 32px);
     outline: none;
-    
+    background-color: transparent;
+    border: none;
+    font-family: Poppins,sans-serif;
+    font-size: 1rem;
 }
 
 .tasks, .checkeds{
